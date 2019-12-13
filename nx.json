@@ -1,0 +1,18 @@
+{
+  "npmScope": "angular-jss",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "angular-jss-e2e": {
+      "tags": []
+    },
+    "angular-jss": {
+      "tags": []
+    }
+  }
+}
