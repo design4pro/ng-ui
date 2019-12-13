@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'angular-jss',
+  name: 'angular-jss-universal',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/angular-jss',
+  coverageDirectory: '../../coverage/apps/angular-jss-universal',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'

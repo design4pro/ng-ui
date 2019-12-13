@@ -1,5 +1,5 @@
 {
-  "npmScope": "angular-jss",
+  "npmScope": "design4pro",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -8,11 +8,20 @@
     "nx.json": "*"
   },
   "projects": {
-    "angular-jss-e2e": {
+    "angular-jss-app-e2e": {
       "tags": []
     },
-    "angular-jss": {
+    "angular-jss-app": {
+      "tags": ["front"]
+    },
+    "angular-jss-universal-e2e": {
       "tags": []
+    },
+    "angular-jss-universal": {
+      "tags": ["front"]
+    },
+    "angular-jss": {
+      "tags": ["library"]
     }
   }
 }
