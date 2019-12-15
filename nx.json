@@ -8,19 +8,19 @@
     "nx.json": "*"
   },
   "projects": {
-    "angular-jss-app-e2e": {
+    "ng-jss-app-e2e": {
       "tags": []
     },
-    "angular-jss-app": {
+    "ng-jss-app": {
       "tags": ["front"]
     },
-    "angular-jss-universal-e2e": {
+    "ng-jss-universal-e2e": {
       "tags": []
     },
-    "angular-jss-universal": {
+    "ng-jss-universal": {
       "tags": ["front"]
     },
-    "angular-jss": {
+    "ng-jss": {
       "tags": ["library"]
     }
   }

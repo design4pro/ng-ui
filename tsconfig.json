@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@@design4pro/angular-jss/angular-jss": ["libs/angular-jss/src/index.ts"]
+      "@design4pro/ng-jss": ["libs/ng-jss/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

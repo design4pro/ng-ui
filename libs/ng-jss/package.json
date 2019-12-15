@@ -1,0 +1,20 @@
+{
+  "name": "@design4pro/ng-jss",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "jss": "^10.0.0",
+    "jss-plugin-camel-case": "^10.0.0",
+    "jss-plugin-compose": "^10.0.0",
+    "jss-plugin-default-unit": "^10.0.0",
+    "jss-plugin-expand": "^10.0.0",
+    "jss-plugin-extend": "^10.0.0",
+    "jss-plugin-global": "^10.0.0",
+    "jss-plugin-nested": "^10.0.0",
+    "jss-plugin-props-sort": "^10.0.0",
+    "jss-plugin-rule-value-observable": "^10.0.0",
+    "jss-plugin-template": "^10.0.0",
+    "jss-plugin-vendor-prefixer": "^10.0.0"
+  }
+}
