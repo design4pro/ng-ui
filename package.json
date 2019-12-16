@@ -28,7 +28,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "compile:server": "webpack --config apps/ng-ui-universal/webpack.server.config.js --progress --colors",
-    "serve:ssr": "node dist/apps/ng-ui-universal/server/server",
+    "serve:ssr": "DEBUG=express:* node dist/apps/ng-ui-universal/server/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run ng-ui-universal:server:production",
     "release": "npx semantic-release"
