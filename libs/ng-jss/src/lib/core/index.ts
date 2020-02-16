@@ -1,2 +1,2 @@
-export * from './normalize';
-export { default } from './normalize';
+export * from './styles/normalize';
+export { default } from './styles/normalize';

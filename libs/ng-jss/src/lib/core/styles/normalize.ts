@@ -1,5 +1,5 @@
 import { StyleSheet } from 'jss';
-import { jss } from '../jss';
+import { jss } from '../../jss';
 
 /**
  * JSS port of normalize.css. Inspired by:

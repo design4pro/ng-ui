@@ -9,19 +9,29 @@
   },
   "projects": {
     "ng-jss-app-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["ng-jss-app"]
     },
     "ng-jss-app": {
       "tags": ["front"]
     },
     "ng-jss-universal-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["ng-jss-universal"]
     },
     "ng-jss-universal": {
       "tags": ["front"]
     },
     "ng-jss": {
       "tags": ["library"]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   }
 }

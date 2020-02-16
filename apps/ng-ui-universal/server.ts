@@ -5,7 +5,10 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
 
-import { AppServerModule } from './src/main.server';
+// import { AppServerModule } from './src/main.server';
+const {
+  AppServerModule
+} = require('../../dist/apps/ng-ui-universal/server/main');
 import { APP_BASE_HREF } from '@angular/common';
 
 const server = express();

@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
+import { ContextStore } from './core/context/context.store';
 import { NG_JSS_OPTIONS_INJECTOR } from './ng-jss.injector';
 import { NgJssOptions } from './ng-jss.interface';
 import { NgJssService, NgJssServiceFactory } from './ng-jss.service';
 
 @NgModule({
-  imports: [CommonModule]
+  imports: [CommonModule],
+  providers: [ContextStore]
 })
 export class NgJssModule {
   constructor() {
@@ -24,7 +26,7 @@ export class NgJssModule {
         {
           provide: APP_INITIALIZER,
           useFactory: NgJssServiceFactory,
-          deps: [NgJssService],
+          deps: [NgJssService, ContextStore],
           multi: true
         }
       ]

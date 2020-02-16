@@ -25,7 +25,7 @@
               "apps/ng-ui-app/src/favicon.ico",
               "apps/ng-ui-app/src/assets"
             ],
-            "styles": ["apps/ng-ui-app/src/styles.scss"],
+            "styles": [],
             "scripts": []
           },
           "configurations": {
@@ -92,7 +92,8 @@
           "options": {
             "jestConfig": "apps/ng-ui-app/jest.config.js",
             "tsConfig": "apps/ng-ui-app/tsconfig.spec.json",
-            "setupFile": "apps/ng-ui-app/src/test-setup.ts"
+            "setupFile": "apps/ng-ui-app/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       }
@@ -215,7 +216,8 @@
           "options": {
             "jestConfig": "apps/ng-ui-universal/jest.config.js",
             "tsConfig": "apps/ng-ui-universal/tsconfig.spec.json",
-            "setupFile": "apps/ng-ui-universal/src/test-setup.ts"
+            "setupFile": "apps/ng-ui-universal/src/test-setup.ts",
+            "passWithNoTests": true
           }
         },
         "server": {
@@ -277,7 +279,7 @@
       "prefix": "ng-jss",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/ng-jss/tsconfig.lib.json",
             "project": "libs/ng-jss/ng-package.json"
@@ -298,7 +300,8 @@
           "options": {
             "jestConfig": "libs/ng-jss/jest.config.js",
             "tsConfig": "libs/ng-jss/tsconfig.spec.json",
-            "setupFile": "libs/ng-jss/src/test-setup.ts"
+            "setupFile": "libs/ng-jss/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },

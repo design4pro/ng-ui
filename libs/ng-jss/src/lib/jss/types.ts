@@ -1,11 +1,13 @@
-export type StaticStyle = {};
+import { GenerateId, SheetsManager, SheetsRegistry } from 'jss';
 
-export type DynamicStyle<Theme> = ({ theme: Theme }) => StaticStyle;
+export type Managers = { [key: number]: SheetsManager };
 
-export type StaticStyles = { [key: string]: StaticStyle };
-
-export type ThemedStyles<Theme> = (
-  theme: Theme
-) => StaticStyle | DynamicStyle<Theme>;
-
-export type Styles<Theme> = StaticStyles | ThemedStyles<Theme>;
+export type Options = {
+  registry?: SheetsRegistry;
+  jss?: any;
+  generateId?: GenerateId;
+  classNamePrefix?: string;
+  disableStylesGeneration?: boolean;
+  media?: string;
+  id?: { minify: boolean };
+};
