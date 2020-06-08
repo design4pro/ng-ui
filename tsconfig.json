@@ -19,5 +19,6 @@
       "@design4pro/ng-jss": ["libs/ng-jss/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "include": ["libs/**/*.ts"]
 }

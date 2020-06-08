@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { ContextStore } from './context.store';
 
-describe('CoffeeElectionStore', () => {
+describe('ContextStore', () => {
   let store: ContextStore;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ContextStore]
+      providers: [ContextStore],
     });
 
     store = new ContextStore();
     store.setState({
-      disableStylesGeneration: false
+      disableStylesGeneration: false,
     });
   });
 

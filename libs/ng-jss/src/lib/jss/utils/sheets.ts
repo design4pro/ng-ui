@@ -1,17 +1,29 @@
 import { getDynamicStyles, StyleSheet, StyleSheetFactoryOptions } from 'jss';
 import warning from 'tiny-warning';
+import { ContextState } from '../../core/context/context-state';
 import { getManager } from '../managers';
 import { jss as defaultJss } from '../setup';
 import { DynamicRules, Styles } from '../types';
 import { addMeta, getMeta } from './sheets-meta';
 
-type Options<Theme> = {
+declare module 'jss' {
+  interface StyleSheet {
+    rules: RuleList;
+  }
+
+  interface RuleList {
+    index: Array<Rule>;
+  }
+}
+
+interface Options<Theme> {
+  context: ContextState;
   theme: Theme;
   name?: string;
   index: number;
   styles: Styles<Theme>;
   sheetOptions: StyleSheetFactoryOptions;
-};
+}
 
 const getStyles = <Theme>(options: Options<Theme>) => {
   const { styles } = options;
@@ -21,8 +33,9 @@ const getStyles = <Theme>(options: Options<Theme>) => {
 
   warning(
     styles.length !== 0,
-    `[JSS] <${options.name ||
-      'Hook'} />'s styles function doesn't rely on the "theme" argument. We recommend declaring styles as an object instead.`
+    `[JSS] <${
+      options.name || 'Hook'
+    } />'s styles function doesn't rely on the "theme" argument. We recommend declaring styles as an object instead.`
   );
 
   return styles(options.theme);
@@ -49,7 +62,7 @@ function getSheetOptions<Theme>(options: Options<Theme>, link: boolean) {
     meta,
     classNamePrefix,
     link,
-    generateId: options.context.generateId
+    generateId: options.context.generateId,
   };
 }
 
@@ -58,7 +71,7 @@ export const createStyleSheet = <Theme>(options: Options<Theme>) => {
     return undefined;
   }
 
-  const manager = getManager(options.index);
+  const manager = getManager(options.context, options.index);
   const existingSheet = manager.get(options.theme);
 
   if (existingSheet) {
@@ -68,6 +81,7 @@ export const createStyleSheet = <Theme>(options: Options<Theme>) => {
   const jss = options.context.jss || defaultJss;
   const styles = getStyles(options);
   const dynamicStyles = getDynamicStyles(styles);
+  console.log({ styles, dynamicStyles });
   const sheet = jss.createStyleSheet(
     styles,
     getSheetOptions(options, dynamicStyles !== null)
@@ -76,7 +90,7 @@ export const createStyleSheet = <Theme>(options: Options<Theme>) => {
   addMeta(sheet, {
     dynamicStyles,
     styles,
-    dynamicRuleCounter: 0
+    dynamicRuleCounter: 0,
   });
 
   manager.add(options.theme, sheet);
@@ -87,6 +101,7 @@ export const createStyleSheet = <Theme>(options: Options<Theme>) => {
 export const removeDynamicRules = (sheet: StyleSheet, rules: DynamicRules) => {
   // Loop over each dynamic rule and remove the dynamic rule
   // We can't just remove the whole sheet as this has all of the rules for every component instance
+  // tslint:disable-next-line: forin
   for (const key in rules) {
     sheet.deleteRule(rules[key].key);
   }
@@ -99,8 +114,8 @@ export const updateDynamicRules = (
 ) => {
   // Loop over each dynamic rule and update it
   // We can't just update the whole sheet as this has all of the rules for every component instance
+  // tslint:disable-next-line: forin
   for (const key in rules) {
-    // $FlowFixMe
     sheet.update(rules[key].key, data);
   }
 };
@@ -115,6 +130,7 @@ export const addDynamicRules = (sheet: StyleSheet, data: any): DynamicRules => {
   const rules: DynamicRules = {};
 
   // Loop over each dynamic rule and add it to the stylesheet
+  // tslint:disable-next-line: forin
   for (const key in meta.dynamicStyles) {
     const name = `${key}-${meta.dynamicRuleCounter++}`;
     const initialRuleCount = sheet.rules.index.length;

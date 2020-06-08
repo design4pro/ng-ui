@@ -1,8 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
 import { createGenerateId, SheetsRegistry } from 'jss';
 import { normalize } from './core';
-import { Context } from './core/context/context.interface';
+import { ContextState } from './core/context/context-state';
 import { ContextStore } from './core/context/context.store';
+import { ThemeState } from './core/theme/theme-state';
+import { ThemeStore } from './core/theme/theme.store';
 import shallowEqualObjects from './core/utils/shallow-equal-objects';
 import { Managers } from './jss/types';
 import { NG_JSS_OPTIONS_INJECTOR } from './ng-jss.injector';
@@ -24,10 +26,11 @@ export class NgJssService {
   private registry: SheetsRegistry;
   private initialContext: Object = {};
   private managers: Managers = {};
-  private prevContext: Context;
+  private prevContext: ContextState;
 
   constructor(
-    private store: ContextStore,
+    private contextStore: ContextStore,
+    private themeStore: ThemeStore,
     @Inject(NG_JSS_OPTIONS_INJECTOR) private options: NgJssOptions
   ) {}
 
@@ -45,10 +48,22 @@ export class NgJssService {
   }
 
   createContext(
-    parentContext: Context,
-    prevContext: Context = this.initialContext
+    parentContext: ContextState,
+    prevContext: ContextState = this.initialContext
   ) {
     const context = { ...parentContext };
+
+    if (this.options.registry) {
+      context.registry = this.options.registry;
+
+      // This way we identify a new request on the server, because user will create
+      // a new Registry instance for each.
+      if (this.options.registry !== this.registry) {
+        // We reset managers because we have to regenerate all sheets for the new request.
+        this.managers = {};
+        this.registry = this.options.registry;
+      }
+    }
 
     context.managers = this.managers;
 
@@ -63,16 +78,23 @@ export class NgJssService {
     return context;
   }
 
-  context(parentContext: Context): ContextStore {
+  context(parentContext: ContextState): ContextStore {
     console.log('NgJssService->context', { parentContext });
-    const context: Context = this.createContext(
+    const context: ContextState = this.createContext(
       parentContext,
       this.prevContext
     );
     this.prevContext = context;
 
-    this.store.setState(context);
+    this.contextStore.setState(context);
 
-    return this.store;
+    return this.contextStore;
+  }
+
+  theme(theme: ThemeState): ThemeStore {
+    console.log('NgJssService->theme', { theme });
+    this.themeStore.setState(theme);
+
+    return this.themeStore;
   }
 }

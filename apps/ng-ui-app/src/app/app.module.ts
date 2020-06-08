@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgJssModule } from '@design4pro/ng-jss';
+import { NgJssModule, SheetsRegistry } from '@design4pro/ng-jss';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     NgJssModule.forRoot({
-      normalize: true
+      normalize: true,
+      registry: new SheetsRegistry()
     })
   ],
   providers: [],
