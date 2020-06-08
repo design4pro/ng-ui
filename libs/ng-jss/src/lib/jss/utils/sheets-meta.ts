@@ -1,11 +1,11 @@
 import { StyleSheet } from 'jss';
 import { StaticStyles } from '../types';
 
-type SheetMeta = {
+interface SheetMeta {
   styles: StaticStyles;
   dynamicStyles: StaticStyles;
   dynamicRuleCounter: number;
-};
+}
 
 const sheetsMeta = new WeakMap<StyleSheet, SheetMeta>();
 

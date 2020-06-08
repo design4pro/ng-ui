@@ -1,14 +1,25 @@
-import { SheetsManager } from 'jss';
+import { SheetsManager, StyleSheet } from 'jss';
+import { ContextState } from '../core/context/context-state';
 
-type Options<Theme> = {
+interface Options<Theme> {
   sheet: StyleSheet;
+  context: ContextState;
   index: number;
   theme: Theme;
-};
+}
 
 const defaultManagers = new Map();
 
-export const getManager = (managerId: number) => {
+export const getManager = (context: ContextState, managerId: number) => {
+  // If `managers` map is present in the context, we use it in order to
+  // let JssProvider reset them when new response has to render server-side.
+  if (context.managers) {
+    if (!context.managers[managerId]) {
+      context.managers[managerId] = new SheetsManager();
+    }
+    return context.managers[managerId];
+  }
+
   let manager = defaultManagers.get(managerId);
 
   if (!manager) {
@@ -20,13 +31,17 @@ export const getManager = (managerId: number) => {
 };
 
 export const manageSheet = <Theme>(options: Options<Theme>) => {
-  const { sheet, index, theme } = options;
+  const { sheet, context, index, theme } = options;
   if (!sheet) {
     return;
   }
 
-  const manager = getManager(index);
+  const manager = getManager(context, index);
   manager.manage(theme);
+
+  if (context.registry) {
+    context.registry.add(sheet);
+  }
 };
 
 export const unmanageSheet = <Theme>(options: Options<Theme>) => {
@@ -34,7 +49,7 @@ export const unmanageSheet = <Theme>(options: Options<Theme>) => {
     return;
   }
 
-  const manager = getManager(options.index);
+  const manager = getManager(options.context, options.index);
 
   manager.unmanage(options.theme);
 };

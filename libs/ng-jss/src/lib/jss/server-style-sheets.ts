@@ -1,5 +1,5 @@
 import { SheetsRegistry } from 'jss';
-import createGenerateClassName from './utils/create-generate-class-name';
+import createGenerateClassName from './utils/get-sheet-classes';
 
 export default class ServerStyleSheets {
   options;

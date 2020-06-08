@@ -8,18 +8,18 @@
     "nx.json": "*"
   },
   "projects": {
-    "ng-jss-app-e2e": {
+    "ng-ui-app-e2e": {
       "tags": [],
-      "implicitDependencies": ["ng-jss-app"]
+      "implicitDependencies": ["ng-ui-app"]
     },
-    "ng-jss-app": {
+    "ng-ui-app": {
       "tags": ["front"]
     },
-    "ng-jss-universal-e2e": {
+    "ng-ui-universal-e2e": {
       "tags": [],
-      "implicitDependencies": ["ng-jss-universal"]
+      "implicitDependencies": ["ng-ui-universal"]
     },
-    "ng-jss-universal": {
+    "ng-ui-universal": {
       "tags": ["front"]
     },
     "ng-jss": {
