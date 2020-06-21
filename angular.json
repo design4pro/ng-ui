@@ -84,7 +84,7 @@
               "apps/ng-ui-app/tsconfig.app.json",
               "apps/ng-ui-app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ng-ui-app/**"]
+            "exclude": ["**/node_modules/**", "!apps/ng-ui-app/**/*"]
           }
         },
         "test": {
@@ -120,7 +120,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/ng-ui-app-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ng-ui-app-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/ng-ui-app-e2e/**/*"]
           }
         }
       }
@@ -208,7 +208,7 @@
               "apps/ng-ui-universal/tsconfig.app.json",
               "apps/ng-ui-universal/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ng-ui-universal/**"]
+            "exclude": ["**/node_modules/**", "!apps/ng-ui-universal/**/*"]
           }
         },
         "test": {
@@ -267,7 +267,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/ng-ui-universal-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ng-ui-universal-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/ng-ui-universal-e2e/**/*"]
           }
         }
       }
@@ -292,7 +292,7 @@
               "libs/ng-jss/tsconfig.lib.json",
               "libs/ng-jss/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ng-jss/**"]
+            "exclude": ["**/node_modules/**", "!libs/ng-jss/**/*"]
           }
         },
         "test": {

@@ -2,8 +2,8 @@
   "name": "@design4pro/ng-jss",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
+    "@angular/common": "^9.1.11",
+    "@angular/core": "^9.1.11",
     "fast-memoize": "^2.5.2",
     "jss": "^10.3.0",
     "jss-plugin-camel-case": "^10.3.0",
