@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { ContextStore } from './context.store';
+import { JssStore } from './jss-context';
 
-describe('ContextStore', () => {
-  let store: ContextStore;
+describe('JssStore', () => {
+  let store: JssStore;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ContextStore],
+      providers: [JssStore],
     });
 
-    store = new ContextStore();
+    store = new JssStore();
     store.setState({
       disableStylesGeneration: false,
     });

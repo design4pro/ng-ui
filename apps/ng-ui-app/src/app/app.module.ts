@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgJssModule, SheetsRegistry } from '@design4pro/ng-jss';
+import { NgJssModule } from '@design4pro/ng-jss';
 import { AppComponent } from './app.component';
+import { HelloComponent } from './hello/hello.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    NgJssModule.forRoot({
-      normalize: true,
-      registry: new SheetsRegistry()
-    })
-  ],
+  declarations: [AppComponent, HelloComponent],
+  imports: [BrowserModule, NgJssModule.forRoot()],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor() {

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'jss';
-import { jss } from '../../jss';
+import { jss } from '../jss';
 
 /**
  * JSS port of normalize.css. Inspired by:
@@ -14,7 +14,7 @@ import { jss } from '../../jss';
  */
 
 export function normalize(dynamic: boolean = false): StyleSheet {
-  const styles: Object = {
+  const styles: any = {
     '@global': {
       /**
        * 1. Change the default font family in all browsers (opinionated).
@@ -24,21 +24,21 @@ export function normalize(dynamic: boolean = false): StyleSheet {
       html: {
         fontFamily: 'sans-serif' /* 1 */,
         lineHeight: '1.15' /* 2 */,
-        textSizeAdjust: '100%' /* 3 */
+        textSizeAdjust: '100%' /* 3 */,
       },
 
       /**
        * Remove the margin in all browsers (opinionated).
        */
       body: {
-        margin: 0
+        margin: 0,
       },
 
       /**
        * Add the correct display in IE9
        */
       'article, aside, footer, header, nav, section, figcaption, figure, main': {
-        display: 'block'
+        display: 'block',
       },
 
       /**
@@ -47,7 +47,7 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       h1: {
         fontSize: '2em',
-        margin: [['0.67em', 0]]
+        margin: [['0.67em', 0]],
       },
 
       /**
@@ -57,7 +57,7 @@ export function normalize(dynamic: boolean = false): StyleSheet {
       hr: {
         boxSizing: 'content-box' /* 1 */,
         height: 0 /* 1 */,
-        overflow: 'visible' /* 2 */
+        overflow: 'visible' /* 2 */,
       },
 
       /**
@@ -66,7 +66,7 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       pre: {
         fontFamily: 'monospace, monospace' /* 1 */,
-        fontSize: '1em' /* 2 */
+        fontSize: '1em' /* 2 */,
       },
 
       /**
@@ -77,10 +77,10 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       a: {
         background: 'transparent' /* 1 */,
-        textDecorationSkip: 'objects' /* 2 */
+        textDecorationSkip: 'objects' /* 2 */,
       },
       'a:active, a:hover': {
-        outlineWidth: 0 /* 3 */
+        outlineWidth: 0 /* 3 */,
       },
 
       /**
@@ -89,14 +89,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       'abbr[title]': {
         borderBottom: 'none' /* 1 */,
-        textDecoration: 'underline' /* 2 */
+        textDecoration: 'underline' /* 2 */,
       },
 
       /**
        * Add the correct font weight in Chrome, Edge, and Safari.
        */
       'b, strong': {
-        fontWeight: 'bolder'
+        fontWeight: 'bolder',
       },
 
       /**
@@ -105,14 +105,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       'code, kbp, samp': {
         fontFamily: 'monospace, monospace' /* 1 */,
-        fontSize: '1em' /* 2 */
+        fontSize: '1em' /* 2 */,
       },
 
       /**
        * Add the correct font style in Android 4.3-.
        */
       dfn: {
-        fontStyle: 'italic'
+        fontStyle: 'italic',
       },
 
       /**
@@ -120,14 +120,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       mark: {
         backgroundColor: '#ff0',
-        color: '#000'
+        color: '#000',
       },
 
       /**
        * Add the correct font size in all browsers.
        */
       small: {
-        fontSize: '80%'
+        fontSize: '80%',
       },
 
       /**
@@ -138,20 +138,20 @@ export function normalize(dynamic: boolean = false): StyleSheet {
         fontSize: '75%',
         lineHeight: 0,
         position: 'relative',
-        verticalAlign: 'baseline'
+        verticalAlign: 'baseline',
       },
       sup: {
-        top: '-0.5em'
+        top: '-0.5em',
       },
       sub: {
-        bottom: '-0.25em'
+        bottom: '-0.25em',
       },
 
       /**
        * Add the correct display in IE 9-.
        */
       'audio, video': {
-        display: 'inline-block'
+        display: 'inline-block',
       },
 
       /**
@@ -159,7 +159,7 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       'audio:not([controls])': {
         display: 'none',
-        height: 0
+        height: 0,
       },
 
       /**
@@ -168,14 +168,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       img: {
         borderStyle: 'none' /* 1 */,
-        verticalAlign: 'middle' /* 2 */
+        verticalAlign: 'middle' /* 2 */,
       },
 
       /**
        * Hide the overflow in IE.
        */
       'svg:not(:root)': {
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
 
       /**
@@ -186,28 +186,28 @@ export function normalize(dynamic: boolean = false): StyleSheet {
         fontFamily: 'sans-serif' /* 1 */,
         fontSize: '100%' /* 1 */,
         lineHeight: '1.15' /* 1 */,
-        margin: 0 /* 2 */
+        margin: 0 /* 2 */,
       },
 
       /**
        * Show the overflow in IE & Edge.
        */
       'button, input': {
-        overflow: 'visible'
+        overflow: 'visible',
       },
 
       /**
        * Remove the inheritance of text transform in Edge, Firefox, and IE.
        */
       'button, select': {
-        textTransform: 'none'
+        textTransform: 'none',
       },
 
       /**
        * Correct the inability to style clickable types in iOS and Safari.
        */
       'button, [type=reset], [type=submit]': {
-        '-webkit-appearance': 'button'
+        '-webkit-appearance': 'button',
       },
 
       /**
@@ -215,14 +215,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       'button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner': {
         borderStyle: 'none',
-        padding: 0
+        padding: 0,
       },
 
       /**
        * Restore the focus styles unset by the previous rule.
        */
       'button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring': {
-        outline: '1px dotted ButtonText'
+        outline: '1px dotted ButtonText',
       },
 
       /**
@@ -231,7 +231,7 @@ export function normalize(dynamic: boolean = false): StyleSheet {
       fieldset: {
         border: '1px solid #c0c0c0',
         margin: [[0, '2px']],
-        padding: [['0.35em', '0.625em', '0.75em']]
+        padding: [['0.35em', '0.625em', '0.75em']],
       },
 
       /**
@@ -246,7 +246,7 @@ export function normalize(dynamic: boolean = false): StyleSheet {
         display: 'table' /* 1 */,
         maxWidth: '100%' /* 1 */,
         padding: 0 /* 3 */,
-        whiteSpace: 'normal' /* 1 */
+        whiteSpace: 'normal' /* 1 */,
       },
 
       /**
@@ -255,14 +255,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       progress: {
         display: 'inline-block' /* 1 */,
-        verticalAlign: 'baseline' /* 2 */
+        verticalAlign: 'baseline' /* 2 */,
       },
 
       /**
        * Remove the default vertical scrollbar in IE.
        */
       textarea: {
-        overflow: 'auto'
+        overflow: 'auto',
       },
 
       /**
@@ -271,14 +271,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       '[type=checkbox], [type=radio]': {
         boxSizing: 'border-box' /* 1 */,
-        padding: 0 /* 2 */
+        padding: 0 /* 2 */,
       },
 
       /**
        * Correct the cursor style of increment and decrement buttons in Chrome.
        */
       '[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button': {
-        height: 'auto'
+        height: 'auto',
       },
 
       /**
@@ -287,14 +287,14 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       '[type=search]': {
         appearance: 'textfield' /* 1 */,
-        outlineOffset: '-2px' /* 2 */
+        outlineOffset: '-2px' /* 2 */,
       },
 
       /**
        * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
        */
       '[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration': {
-        appearance: 'none'
+        appearance: 'none',
       },
 
       /**
@@ -303,44 +303,44 @@ export function normalize(dynamic: boolean = false): StyleSheet {
        */
       '::-webkit-file-upload-button': {
         appearance: 'button' /* 1 */,
-        font: 'inherit' /* 2 */
+        font: 'inherit' /* 2 */,
       },
 
       /*
        * Add the correct display in Edge, IE, and Firefox.
        */
       'details, menu': {
-        display: 'block'
+        display: 'block',
       },
 
       /*
        * Add the correct display in all browsers.
        */
       summary: {
-        display: 'list-item'
+        display: 'list-item',
       },
 
       /**
        * Add the correct display in IE 9-.
        */
       canvas: {
-        display: 'inline-block'
+        display: 'inline-block',
       },
 
       /**
        * Add the correct display in IE.
        */
       template: {
-        display: 'none'
+        display: 'none',
       },
 
       /**
        * Add the correct display in IE 10-.
        */
       '[hidden]': {
-        display: 'none'
-      }
-    }
+        display: 'none',
+      },
+    },
   };
 
   return jss.createStyleSheet(styles, { link: dynamic });

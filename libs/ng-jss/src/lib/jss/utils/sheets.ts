@@ -1,6 +1,7 @@
 import { getDynamicStyles, StyleSheet, StyleSheetFactoryOptions } from 'jss';
 import warning from 'tiny-warning';
-import { ContextState } from '../../core/context/context-state';
+import { ThemeContext } from '../../theme/theme-context';
+import { JssContext } from '../jss-context';
 import { getManager } from '../managers';
 import { jss as defaultJss } from '../setup';
 import { DynamicRules, Styles } from '../types';
@@ -16,8 +17,8 @@ declare module 'jss' {
   }
 }
 
-interface Options<Theme> {
-  context: ContextState;
+interface Options<Context, Theme> {
+  context: Context;
   theme: Theme;
   name?: string;
   index: number;
@@ -25,7 +26,7 @@ interface Options<Theme> {
   sheetOptions: StyleSheetFactoryOptions;
 }
 
-const getStyles = <Theme>(options: Options<Theme>) => {
+const getStyles = (options: Options<JssContext, ThemeContext>) => {
   const { styles } = options;
   if (typeof styles !== 'function') {
     return styles;
@@ -41,7 +42,10 @@ const getStyles = <Theme>(options: Options<Theme>) => {
   return styles(options.theme);
 };
 
-function getSheetOptions<Theme>(options: Options<Theme>, link: boolean) {
+function getSheetOptions(
+  options: Options<JssContext, ThemeContext>,
+  link: boolean
+) {
   let minify;
   if (options.context.id && options.context.id.minify != null) {
     minify = options.context.id.minify;
@@ -66,10 +70,14 @@ function getSheetOptions<Theme>(options: Options<Theme>, link: boolean) {
   };
 }
 
-export const createStyleSheet = <Theme>(options: Options<Theme>) => {
+export const createStyleSheet = (
+  options: Options<JssContext, ThemeContext>
+) => {
   if (options.context.disableStylesGeneration) {
     return undefined;
   }
+
+  console.log('createStyleSheet', { options });
 
   const manager = getManager(options.context, options.index);
   const existingSheet = manager.get(options.theme);
@@ -81,7 +89,6 @@ export const createStyleSheet = <Theme>(options: Options<Theme>) => {
   const jss = options.context.jss || defaultJss;
   const styles = getStyles(options);
   const dynamicStyles = getDynamicStyles(styles);
-  console.log({ styles, dynamicStyles });
   const sheet = jss.createStyleSheet(
     styles,
     getSheetOptions(options, dynamicStyles !== null)
@@ -141,7 +148,6 @@ export const addDynamicRules = (sheet: StyleSheet, data: any): DynamicRules => {
     for (let i = initialRuleCount; i < sheet.rules.index.length; i++) {
       const rule = sheet.rules.index[i];
 
-      // $FlowFixMe: Not sure why flow has an issue here
       sheet.update(rule.key, data);
 
       // If it's the original rule, we need to add it by the correct key so the hook and hoc

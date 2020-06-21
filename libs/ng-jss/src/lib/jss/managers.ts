@@ -1,16 +1,16 @@
 import { SheetsManager, StyleSheet } from 'jss';
-import { ContextState } from '../core/context/context-state';
+import { JssContext } from './jss-context';
 
-interface Options<Theme> {
+interface ManagerOptions<Theme> {
   sheet: StyleSheet;
-  context: ContextState;
+  context: JssContext;
   index: number;
   theme: Theme;
 }
 
 const defaultManagers = new Map();
 
-export const getManager = (context: ContextState, managerId: number) => {
+export const getManager = (context: JssContext, managerId: number) => {
   // If `managers` map is present in the context, we use it in order to
   // let JssProvider reset them when new response has to render server-side.
   if (context.managers) {
@@ -30,7 +30,7 @@ export const getManager = (context: ContextState, managerId: number) => {
   return manager;
 };
 
-export const manageSheet = <Theme>(options: Options<Theme>) => {
+export const manageSheet = <Theme>(options: ManagerOptions<Theme>) => {
   const { sheet, context, index, theme } = options;
   if (!sheet) {
     return;
@@ -44,7 +44,7 @@ export const manageSheet = <Theme>(options: Options<Theme>) => {
   }
 };
 
-export const unmanageSheet = <Theme>(options: Options<Theme>) => {
+export const unmanageSheet = <Theme>(options: ManagerOptions<Theme>) => {
   if (!options.sheet) {
     return;
   }

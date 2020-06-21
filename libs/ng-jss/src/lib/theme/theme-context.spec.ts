@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ThemeStore } from './theme.store';
+import { ThemeStore } from './theme-context';
 
 describe('ThemeStore', () => {
   let store: ThemeStore;
@@ -11,11 +11,11 @@ describe('ThemeStore', () => {
 
     store = new ThemeStore();
     store.setState({
-      theme: 'dark',
+      direction: 'rtl',
     });
   });
 
-  it('should them be dark', () => {
-    expect(store.state.theme).toBe('dark');
+  it('should direction be RTL', () => {
+    expect(store.state.direction).toBe('rtl');
   });
 });

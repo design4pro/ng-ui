@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
+import { IThemeBreakpoints } from '../types';
 import { Store } from '../utils/store';
-import { ThemeState } from './theme-state';
+
+export type ThemeType = string | 'auto' | 'light' | 'dark';
+
+export class ThemeContext {
+  breakpoints?: IThemeBreakpoints;
+  direction?: string;
+  overrides?: object;
+  props?: object;
+}
 
 @Injectable()
-export class ThemeStore extends Store<ThemeState> {
+export class ThemeStore extends Store<ThemeContext> {
   private static instance: ThemeStore;
 
   constructor() {
-    super(new ThemeState());
+    super(new ThemeContext());
   }
 
   static getInstance(): ThemeStore {
